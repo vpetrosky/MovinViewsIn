@@ -1,0 +1,11 @@
+use_frameworks!
+
+target 'MovinViewsIn_Example' do
+  pod 'MovinViewsIn', :path => '../'
+
+  target 'MovinViewsIn_Tests' do
+    inherit! :search_paths
+
+    
+  end
+end
