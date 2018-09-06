@@ -1,0 +1,22 @@
+{
+  "name": "MovinViewsIn",
+  "version": "0.1.0",
+  "summary": "A short description of MovinViewsIn.",
+  "description": "TODO: Add long description of the pod here.",
+  "homepage": "https://github.com/Vanessa Petrosky/MovinViewsIn",
+  "license": {
+    "type": "MIT",
+    "file": "LICENSE"
+  },
+  "authors": {
+    "Vanessa Petrosky": "vpetrosky@dragonarmy.com"
+  },
+  "source": {
+    "git": "https://github.com/Vanessa Petrosky/MovinViewsIn.git",
+    "tag": "0.1.0"
+  },
+  "platforms": {
+    "ios": "8.0"
+  },
+  "source_files": "MovinViewsIn/Classes/**/*"
+}

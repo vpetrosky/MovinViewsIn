@@ -1,0 +1,16 @@
+PODS:
+  - MovinViewsIn (0.1.0)
+
+DEPENDENCIES:
+  - MovinViewsIn (from `../`)
+
+EXTERNAL SOURCES:
+  MovinViewsIn:
+    :path: "../"
+
+SPEC CHECKSUMS:
+  MovinViewsIn: 95f5583deee113869b935299831f163a6da06e9c
+
+PODFILE CHECKSUM: 16a811b1a8e7a81655a0dc8045c8b31d72e76181
+
+COCOAPODS: 1.5.2

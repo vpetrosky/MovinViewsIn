@@ -7,18 +7,50 @@
 //
 
 import UIKit
+import MovinViewsIn
 
 class ViewController: UIViewController {
 
+    static let imageSegue: String = "Image Segue"
+    
+    @IBOutlet weak var surferButton: UIButton!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
-        // Do any additional setup after loading the view, typically from a nib.
+        surferButton.imageView?.contentMode = .scaleAspectFit
+    }
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if segue.identifier == ViewController.imageSegue {
+            segue.destination.transitioningDelegate = ImageTransitioner.instance
+            
+            if let modalVC = segue.destination as? ModalViewController {
+                modalVC.modalDelegate = self
+            }
+        }
     }
 
-    override func didReceiveMemoryWarning() {
-        super.didReceiveMemoryWarning()
-        // Dispose of any resources that can be recreated.
-    }
+}
 
+// MARK: Image Transitionable
+extension ViewController: ImageTransitionable {
+    var transitioningImageView: UIImageView {
+        return surferButton.imageView ?? UIImageView()
+    }
+    
+    var transitioningImageViewFrame: CGRect {
+        return surferButton.frame
+    }
+    
+    var transitioningImage: UIImage? {
+        return surferButton.imageView?.image
+    }
+}
+
+// MARK: Modal Delegate
+extension ViewController: ModalDelegate {
+    
+    func modalViewControllerDidClose(_ modalVC: ModalViewController) {
+        dismiss(animated: true, completion: nil)
+    }
 }
 

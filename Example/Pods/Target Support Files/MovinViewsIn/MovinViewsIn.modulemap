@@ -1,0 +1,6 @@
+framework module MovinViewsIn {
+  umbrella header "MovinViewsIn-umbrella.h"
+
+  export *
+  module * { export * }
+}

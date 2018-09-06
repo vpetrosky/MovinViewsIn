@@ -1,0 +1,6 @@
+framework module Pods_MovinViewsIn_Example {
+  umbrella header "Pods-MovinViewsIn_Example-umbrella.h"
+
+  export *
+  module * { export * }
+}
