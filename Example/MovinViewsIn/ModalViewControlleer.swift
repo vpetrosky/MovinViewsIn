@@ -32,8 +32,4 @@ extension ModalViewController: ImageTransitionable {
     var transitioningImageViewFrame: CGRect {
         return heroImageView.frame
     }
-    
-    var transitioningImage: UIImage? {
-        return heroImageView.image
-    }
 }

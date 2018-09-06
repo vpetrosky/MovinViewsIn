@@ -40,10 +40,6 @@ extension ViewController: ImageTransitionable {
     var transitioningImageViewFrame: CGRect {
         return surferButton.frame
     }
-    
-    var transitioningImage: UIImage? {
-        return surferButton.imageView?.image
-    }
 }
 
 // MARK: Modal Delegate

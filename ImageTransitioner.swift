@@ -11,7 +11,6 @@ import UIKit
 public protocol ImageTransitionable: class {
     var transitioningImageView: UIImageView { get }
     var transitioningImageViewFrame: CGRect { get }
-    var transitioningImage: UIImage? { get }
 }
 
 public class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
@@ -54,13 +53,13 @@ public class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning 
         if let originVC = fromVC as? ImageTransitionable {
             originImageViewFrame = originVC.transitioningImageViewFrame
             originImageView = originVC.transitioningImageView
-            image = originVC.transitioningImage
+            image = originVC.transitioningImageView.image
         }
         else if let navVC = fromVC as? UINavigationController,
             let topVC = navVC.topViewController as? ImageTransitionable {
             originImageViewFrame = topVC.transitioningImageViewFrame
             originImageView = topVC.transitioningImageView
-            image = topVC.transitioningImage
+            image = topVC.transitioningImageView.image
         }
         
         performPhotoTransition(toView: toVC.view, fromView: fromVC.view, transitionContext: transitionContext)
