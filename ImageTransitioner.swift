@@ -12,9 +12,6 @@ public protocol ImageTransitionable: class {
     var transitioningImageView: UIImageView { get }
     var transitioningImageViewFrame: CGRect { get }
     var transitioningImage: UIImage? { get }
-//    func transitionSetup()
-//    func transitionCleanup(image: UIImage?)
-//    func imageWindowFrame() -> CGRect
 }
 
 public class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
@@ -26,31 +23,12 @@ public class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning 
     private static let imageTransitionDuration: TimeInterval = 0.6
     
     private var image: UIImage?
-//    private weak var fromDelegate: ImageTransition?
-//    private weak var toDelegate: ImageTransition?
     
     private var originImageViewFrame: CGRect?
     private var destinationImageViewFrame: CGRect?
     
     private var originImageView: UIImageView?
     private var destinationImageView: UIImageView?
-    
-//    init(originImageView: UIImageView, destinationImageView: UIImageView) {
-//        self.originImageView = originImageView
-//        self.image = originImageView.image
-//
-//        self.destinationImageView = destinationImageView
-//
-//        super.init()
-//    }
-    
-//    init(image: UIImage, fromDelegate: ImageTransition, toDelegate: ImageTransition) {
-//        self.image = image
-//        self.fromDelegate = fromDelegate
-//        self.toDelegate = toDelegate
-//
-//        super.init()
-//    }
     
     // MARK: UIViewController Animated Transitioning
     
@@ -59,33 +37,31 @@ public class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning 
     }
     
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard var toVC = transitionContext.viewController(forKey: .to),
-            var fromVC = transitionContext.viewController(forKey: .from) else {
+        guard let toVC = transitionContext.viewController(forKey: .to),
+            let fromVC = transitionContext.viewController(forKey: .from) else {
                 return
         }
         
-        if let navVC = toVC as? UINavigationController,
-            let topVC = navVC.topViewController {
-            toVC = topVC
+        if let destinationVC = toVC as? ImageTransitionable {
+            destinationImageViewFrame = destinationVC.transitioningImageViewFrame
+            destinationImageView = destinationVC.transitioningImageView
+        } else if let navVC = toVC as? UINavigationController,
+            let topVC = navVC.topViewController as? ImageTransitionable {
+            destinationImageViewFrame = topVC.transitioningImageViewFrame
+            destinationImageView = topVC.transitioningImageView
         }
         
-        if let navVC = fromVC as? UINavigationController,
-            let topVC = navVC.topViewController {
-            fromVC = topVC
+        if let originVC = fromVC as? ImageTransitionable {
+            originImageViewFrame = originVC.transitioningImageViewFrame
+            originImageView = originVC.transitioningImageView
+            image = originVC.transitioningImage
         }
-        
-        guard let originVC = fromVC as? ImageTransitionable,
-            let destinationVC = toVC as? ImageTransitionable else {
-                return
+        else if let navVC = fromVC as? UINavigationController,
+            let topVC = navVC.topViewController as? ImageTransitionable {
+            originImageViewFrame = topVC.transitioningImageViewFrame
+            originImageView = topVC.transitioningImageView
+            image = topVC.transitioningImage
         }
-        
-        originImageViewFrame = originVC.transitioningImageViewFrame
-        originImageView = originVC.transitioningImageView
-        
-        image = originVC.transitioningImage
-        
-        destinationImageViewFrame = destinationVC.transitioningImageViewFrame
-        destinationImageView = destinationVC.transitioningImageView
         
         performPhotoTransition(toView: toVC.view, fromView: fromVC.view, transitionContext: transitionContext)
     }
@@ -101,8 +77,7 @@ public class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning 
         toView.frame = fromView.frame
         
         originImageView?.alpha = 0
-//        toDelegate?.transitionSetup()
-//        fromDelegate?.transitionSetup()
+        destinationImageView?.alpha = 0
         
         guard let fromSnapshot = fromView.snapshotView(afterScreenUpdates: true),
             let toSnapshot = toView.snapshotView(afterScreenUpdates: true) else {
@@ -120,7 +95,6 @@ public class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning 
         
         let imageView = UIImageView(image: image)
         imageView.contentMode = destinationImageView?.contentMode ?? .scaleAspectFit
-//        imageView.frame = CGRect.zero
         
         imageView.frame = originImageViewFrame
         imageView.clipsToBounds = true
@@ -133,10 +107,10 @@ public class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning 
             
             
             self?.destinationImageView?.image = self?.image
-            self?.originImageView?.alpha = 1
+            self?.originImageView?.image = self?.image
             
-//            self?.toDelegate?.transitionCleanup(image: self?.image)
-//            self?.fromDelegate?.transitionCleanup(image: self?.image)
+            self?.destinationImageView?.alpha = 1
+            self?.originImageView?.alpha = 1
             
             imageView.removeFromSuperview()
             toSnapshot.removeFromSuperview()
@@ -144,6 +118,12 @@ public class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning 
             
             if !transitionContext.transitionWasCancelled {
                 container.addSubview(toView)
+                
+                self?.destinationImageViewFrame = nil
+                self?.destinationImageView = nil
+                self?.originImageViewFrame = nil
+                self?.originImageView = nil
+                self?.image = nil
             }
             
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
