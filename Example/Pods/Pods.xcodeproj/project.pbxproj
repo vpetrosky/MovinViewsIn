@@ -8,7 +8,6 @@
 
 /* Begin PBXBuildFile section */
 		47B500C3BE617EBC7E69BDFAF9AC9277 /* Pods-MovinViewsIn_Tests-dummy.m in Sources */ = {isa = PBXBuildFile; fileRef = 642688BBA321DBBC4D22D76492B9C003 /* Pods-MovinViewsIn_Tests-dummy.m */; };
-		487190442125B3F4006D327A /* Transitioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 487190432125B3F4006D327A /* Transitioner.swift */; };
 		48A732BB213F3CD700D37F24 /* ImageTransitioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A732BA213F3CD700D37F24 /* ImageTransitioner.swift */; };
 		48A732BD213F418100D37F24 /* ImageTransitioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A732BA213F3CD700D37F24 /* ImageTransitioner.swift */; };
 		4F4E3DEADC168C4E1E59826110D4835F /* MovinViewsIn-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DC2AD9257C60122FBC1876EDDED4DC7 /* MovinViewsIn-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
@@ -50,7 +49,6 @@
 		2D9011841786702CA4F9068A65A9A564 /* Info.plist */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
 		371F89B80061C95D2DA8471D750330F2 /* MovinViewsIn-prefix.pch */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.c.h; path = "MovinViewsIn-prefix.pch"; sourceTree = "<group>"; };
 		4382B317237AA5273DF4D2B0AFAA417F /* Pods-MovinViewsIn_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MovinViewsIn_Example-frameworks.sh"; sourceTree = "<group>"; };
-		487190432125B3F4006D327A /* Transitioner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Transitioner.swift; sourceTree = "<group>"; };
 		48A732BA213F3CD700D37F24 /* ImageTransitioner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTransitioner.swift; sourceTree = "<group>"; };
 		505B516822D23F80DA3157EB94D95CCF /* MovinViewsIn.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MovinViewsIn.modulemap; sourceTree = "<group>"; };
 		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
@@ -192,7 +190,6 @@
 		A68CDB8FEEE707EC065F8BE695C6EE99 /* MovinViewsIn */ = {
 			isa = PBXGroup;
 			children = (
-				487190432125B3F4006D327A /* Transitioner.swift */,
 				48A732BA213F3CD700D37F24 /* ImageTransitioner.swift */,
 				1163CE7AA4325192A4EA1C6F86F5446E /* Pod */,
 				F41191CF6B0E906108890626F278E299 /* Support Files */,
@@ -353,7 +350,6 @@
 			buildActionMask = 2147483647;
 			files = (
 				DE403A8826A8900836213FD683A96274 /* MovinViewsIn-dummy.m in Sources */,
-				487190442125B3F4006D327A /* Transitioner.swift in Sources */,
 				48A732BB213F3CD700D37F24 /* ImageTransitioner.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
