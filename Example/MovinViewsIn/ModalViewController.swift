@@ -30,6 +30,7 @@ extension ModalViewController: ImageTransitionable {
     }
     
     var transitioningImageViewFrame: CGRect {
+        debugPrint("hero image frame: \(heroImageView.frame)")
         return heroImageView.frame
     }
 }

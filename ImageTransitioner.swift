@@ -41,6 +41,8 @@ public class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning 
                 return
         }
         
+        // Need to handle tab bars
+        
         if let destinationVC = toVC as? ImageTransitionable {
             destinationImageViewFrame = destinationVC.transitioningImageViewFrame
             destinationImageView = destinationVC.transitioningImageView
@@ -101,6 +103,7 @@ public class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning 
         
         UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
             toSnapshot.alpha = 1
+            debugPrint("Destination frame: \(destinationImageViewFrame)")
             imageView.frame = destinationImageViewFrame
         }) { [weak self] completed in
             

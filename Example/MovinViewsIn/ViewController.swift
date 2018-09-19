@@ -19,6 +19,7 @@ class ViewController: UIViewController {
         super.viewDidLoad()
         surferButton.imageView?.contentMode = .scaleAspectFit
     }
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == ViewController.imageSegue {
             segue.destination.transitioningDelegate = ImageTransitioner.instance
@@ -28,7 +29,6 @@ class ViewController: UIViewController {
             }
         }
     }
-
 }
 
 // MARK: Image Transitionable

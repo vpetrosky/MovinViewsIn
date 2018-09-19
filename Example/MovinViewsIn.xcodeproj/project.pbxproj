@@ -8,7 +8,7 @@
 
 /* Begin PBXBuildFile section */
 		429E6BC70AA62AFF36E0D44A /* Pods_MovinViewsIn_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC34B397DBD4CCE7D461AC46 /* Pods_MovinViewsIn_Tests.framework */; };
-		48A732E02140A6F500D37F24 /* ModalViewControlleer.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A732DF2140A6F500D37F24 /* ModalViewControlleer.swift */; };
+		48A732E02140A6F500D37F24 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A732DF2140A6F500D37F24 /* ModalViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -31,7 +31,7 @@
 /* Begin PBXFileReference section */
 		1757E6ADBE9A92D5E47DC219 /* Pods-MovinViewsIn_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovinViewsIn_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovinViewsIn_Example/Pods-MovinViewsIn_Example.release.xcconfig"; sourceTree = "<group>"; };
 		1C5A1238C24BE209B2E32CD7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
-		48A732DF2140A6F500D37F24 /* ModalViewControlleer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewControlleer.swift; sourceTree = "<group>"; };
+		48A732DF2140A6F500D37F24 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
 		4D896B5F3D206697928E6A48 /* Pods-MovinViewsIn_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovinViewsIn_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovinViewsIn_Tests/Pods-MovinViewsIn_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* MovinViewsIn_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovinViewsIn_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -108,7 +108,7 @@
 			children = (
 				607FACD51AFB9204008FA782 /* AppDelegate.swift */,
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
-				48A732DF2140A6F500D37F24 /* ModalViewControlleer.swift */,
+				48A732DF2140A6F500D37F24 /* ModalViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
@@ -325,7 +325,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				48A732E02140A6F500D37F24 /* ModalViewControlleer.swift in Sources */,
+				48A732E02140A6F500D37F24 /* ModalViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
