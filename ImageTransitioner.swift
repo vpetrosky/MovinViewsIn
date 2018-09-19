@@ -13,11 +13,17 @@ public protocol ImageTransitionable: class {
     var transitioningImageViewFrame: CGRect { get }
 }
 
-public class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
+class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
     
-    public static let instance = ImageTransitioner()
+    private let originVC: UIViewController
+    private let destinationVC: UIViewController
     
-    private override init() {}
+    init(originViewController: UIViewController, destinationViewController: UIViewController) {
+        self.originVC = originViewController
+        self.destinationVC = destinationViewController
+        
+        super.init()
+    }
     
     private static let imageTransitionDuration: TimeInterval = 0.6
     
@@ -130,15 +136,5 @@ public class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning 
             
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
-    }
-}
-
-extension ImageTransitioner: UIViewControllerTransitioningDelegate {
-    public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ImageTransitioner.instance
-    }
-    
-    public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ImageTransitioner.instance
     }
 }

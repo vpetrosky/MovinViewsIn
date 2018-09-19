@@ -10,10 +10,12 @@ import UIKit
 import MovinViewsIn
 
 class ViewController: UIViewController {
-
+    
     static let imageSegue: String = "Image Segue"
     
     @IBOutlet weak var surferButton: UIButton!
+    
+    private var transitionManager: TransitionManager?
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -21,12 +23,13 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == ViewController.imageSegue {
-            segue.destination.transitioningDelegate = ImageTransitioner.instance
+        if segue.identifier == ViewController.imageSegue,
+            let modalVC = segue.destination as? ModalViewController {
             
-            if let modalVC = segue.destination as? ModalViewController {
-                modalVC.modalDelegate = self
-            }
+            transitionManager = TransitionManager(originViewController: self, destinationViewController: modalVC)
+            segue.destination.transitioningDelegate = transitionManager
+            
+            modalVC.modalDelegate = self
         }
     }
 }
