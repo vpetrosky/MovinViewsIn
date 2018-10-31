@@ -9,21 +9,33 @@ import UIKit
 
 public class TransitionManager: NSObject, UIViewControllerTransitioningDelegate {
     
-    private let originVC: UIViewController
-    private let destinationVC: UIViewController
+    private let originVC: ImageTransitionable
+    private let destinationVC: ImageTransitionable
     
-    public init(originViewController: UIViewController, destinationViewController: UIViewController) {
+    private let transitionImageView: UIImageView
+    
+    public init(originViewController: ImageTransitionable, destinationViewController: ImageTransitionable, transitionImageView: UIImageView) {
         self.originVC = originViewController
         self.destinationVC = destinationViewController
+        
+        self.transitionImageView = transitionImageView
         
         super.init()
     }
     
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ImageTransitioner(originViewController: originVC, destinationViewController: destinationVC)
+        let imageTransitioner = ImageTransitioner2(isPresenting: true, transitionImageView: transitionImageView)
+        imageTransitioner.fromDelegate = originVC
+        imageTransitioner.toDelegate = destinationVC
+        
+        return imageTransitioner
     }
     
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        return ImageTransitioner(originViewController: destinationVC, destinationViewController: originVC)
+        let imageTransitioner = ImageTransitioner2(isPresenting: false, transitionImageView: transitionImageView)
+        imageTransitioner.fromDelegate = destinationVC
+        imageTransitioner.toDelegate = originVC
+        
+        return imageTransitioner
     }
 }

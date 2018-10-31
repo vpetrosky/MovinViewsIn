@@ -42,90 +42,78 @@ class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
     }
     
     public func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
-        guard let toVC = transitionContext.viewController(forKey: .to),
-            let fromVC = transitionContext.viewController(forKey: .from) else {
-                return
-        }
         
         // Need to handle tab bars
         
-        if let destinationVC = toVC as? ImageTransitionable {
-            destinationImageViewFrame = destinationVC.transitioningImageViewFrame
-            destinationImageView = destinationVC.transitioningImageView
-        } else if let navVC = toVC as? UINavigationController,
-            let topVC = navVC.topViewController as? ImageTransitionable {
-            destinationImageViewFrame = topVC.transitioningImageViewFrame
-            destinationImageView = topVC.transitioningImageView
+        guard let destination = destinationVC as? ImageTransitionable,
+            let origin = originVC as? ImageTransitionable else {
+                return
         }
+        destinationImageViewFrame = destination.transitioningImageViewFrame
+        destinationImageView = destination.transitioningImageView
         
-        if let originVC = fromVC as? ImageTransitionable {
-            originImageViewFrame = originVC.transitioningImageViewFrame
-            originImageView = originVC.transitioningImageView
-            image = originVC.transitioningImageView.image
-        }
-        else if let navVC = fromVC as? UINavigationController,
-            let topVC = navVC.topViewController as? ImageTransitionable {
-            originImageViewFrame = topVC.transitioningImageViewFrame
-            originImageView = topVC.transitioningImageView
-            image = topVC.transitioningImageView.image
-        }
+        originImageViewFrame = origin.transitioningImageViewFrame
+        originImageView = origin.transitioningImageView
         
-        performPhotoTransition(toView: toVC.view, fromView: fromVC.view, transitionContext: transitionContext)
+        image = origin.transitioningImageView.image
+        
+        performPhotoTransition(destinationView: destinationVC.view, originView: originVC.view, transitionContext: transitionContext)
     }
     
     // MARK: Private
     
-    private func performPhotoTransition(toView: UIView, fromView: UIView, transitionContext: UIViewControllerContextTransitioning) {
+    private func performPhotoTransition(destinationView: UIView, originView: UIView, transitionContext: UIViewControllerContextTransitioning) {
         guard let originImageViewFrame = originImageViewFrame,
-            let destinationImageViewFrame = destinationImageViewFrame else {
+            let destinationImageViewFrame = destinationImageViewFrame,
+            let fromSnapshot = originView.snapshotView(afterScreenUpdates: true),
+            let toSnapshot = destinationView.snapshotView(afterScreenUpdates: true) else {
                 return
         }
         
-        toView.frame = fromView.frame
+        // Set destination frame to same frame as origin
+        destinationView.frame = originView.frame
         
+        // Set both image views' alpha to zero
         originImageView?.alpha = 0
         destinationImageView?.alpha = 0
         
-        guard let fromSnapshot = fromView.snapshotView(afterScreenUpdates: true),
-            let toSnapshot = toView.snapshotView(afterScreenUpdates: true) else {
-                return
-        }
-        
         let container = transitionContext.containerView
         
-        fromSnapshot.frame = fromView.frame
+        // Add origin snapshot to frame
+        fromSnapshot.frame = originView.frame
         container.addSubview(fromSnapshot)
         
-        toSnapshot.frame = fromView.frame
+        // Add destination snapshot to frame and set alpha to zero
+        toSnapshot.frame = originView.frame
         container.addSubview(toSnapshot)
         toSnapshot.alpha = 0
         
-        let imageView = UIImageView(image: image)
-        imageView.contentMode = destinationImageView?.contentMode ?? .scaleAspectFit
+        let animatingImageView = UIImageView(image: image)
+        animatingImageView.contentMode = destinationImageView?.contentMode ?? .scaleAspectFit
         
-        imageView.frame = originImageViewFrame
-        imageView.clipsToBounds = true
-        container.addSubview(imageView)
+        animatingImageView.frame = originImageViewFrame
+        animatingImageView.clipsToBounds = true
+        container.addSubview(animatingImageView)
         
         UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
             toSnapshot.alpha = 1
             debugPrint("Destination frame: \(destinationImageViewFrame)")
-            imageView.frame = destinationImageViewFrame
+            animatingImageView.frame = destinationImageViewFrame
         }) { [weak self] completed in
             
             
             self?.destinationImageView?.image = self?.image
-            self?.originImageView?.image = self?.image
+//            self?.originImageView?.image = self?.image
             
             self?.destinationImageView?.alpha = 1
             self?.originImageView?.alpha = 1
             
-            imageView.removeFromSuperview()
+            animatingImageView.removeFromSuperview()
             toSnapshot.removeFromSuperview()
             fromSnapshot.removeFromSuperview()
             
             if !transitionContext.transitionWasCancelled {
-                container.addSubview(toView)
+                container.addSubview(destinationView)
                 
                 self?.destinationImageViewFrame = nil
                 self?.destinationImageView = nil

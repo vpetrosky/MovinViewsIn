@@ -24,9 +24,10 @@ class ViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == ViewController.imageSegue,
-            let modalVC = segue.destination as? ModalViewController {
+            let modalVC = segue.destination as? ModalViewController,
+            let transitionImageView = surferButton.imageView {
             
-            transitionManager = TransitionManager(originViewController: self, destinationViewController: modalVC)
+            transitionManager = TransitionManager(originViewController: self, destinationViewController: modalVC, transitionImageView: transitionImageView)
             segue.destination.transitioningDelegate = transitionManager
             
             modalVC.modalDelegate = self
