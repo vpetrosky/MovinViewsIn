@@ -7,7 +7,7 @@
 
 import UIKit
 
-class ImageTransitioner2: NSObject, UIViewControllerAnimatedTransitioning {
+class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
     
     weak var fromDelegate: ImageTransitionable?
     weak var toDelegate: ImageTransitionable?

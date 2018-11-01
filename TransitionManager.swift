@@ -24,7 +24,7 @@ public class TransitionManager: NSObject, UIViewControllerTransitioningDelegate 
     }
     
     public func animationController(forPresented presented: UIViewController, presenting: UIViewController, source: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let imageTransitioner = ImageTransitioner2(isPresenting: true, transitionImageView: transitionImageView)
+        let imageTransitioner = ImageTransitioner(isPresenting: true, transitionImageView: transitionImageView)
         imageTransitioner.fromDelegate = originVC
         imageTransitioner.toDelegate = destinationVC
         
@@ -32,7 +32,7 @@ public class TransitionManager: NSObject, UIViewControllerTransitioningDelegate 
     }
     
     public func animationController(forDismissed dismissed: UIViewController) -> UIViewControllerAnimatedTransitioning? {
-        let imageTransitioner = ImageTransitioner2(isPresenting: false, transitionImageView: transitionImageView)
+        let imageTransitioner = ImageTransitioner(isPresenting: false, transitionImageView: transitionImageView)
         imageTransitioner.fromDelegate = destinationVC
         imageTransitioner.toDelegate = originVC
         
