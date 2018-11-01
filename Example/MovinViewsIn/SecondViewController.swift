@@ -75,24 +75,11 @@ extension SecondViewController: ImageTransitionable {
     }
     
     var transitioningImageViewFrame: CGRect {
-        return selectedCell?.frame ?? CGRect.zero
+        
+        guard let selectedCell = selectedCell else { return CGRect.zero }
+        let frame = view.convert(selectedCell.frame, from: collectionView)
+        return frame
     }
-    
-//    var transitioningImageViewFrame: CGRect {
-//        guard let selectedCell = selectedCell,
-//            let collectionView = collectionView,
-//            let indexPath = collectionView.indexPath(for: selectedCell) else {
-//            return CGRect.zero
-//        }
-//
-//        let attributes = collectionView.layoutAttributesForItem(at: indexPath)
-//
-//        if let cellRect = attributes?.frame {
-//            return collectionView.convert(cellRect, to: nil)
-//        }
-//
-//        return CGRect.zero
-//    }
 }
 
 extension SecondViewController: ModalDelegate {

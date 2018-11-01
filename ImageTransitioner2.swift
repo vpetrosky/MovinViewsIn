@@ -28,19 +28,26 @@ class ImageTransitioner2: NSObject, UIViewControllerAnimatedTransitioning {
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
         
-        fromDelegate?.transitioningImageView.alpha = 0
-        
         guard let transitionImage = transitionImageView.image,
             let destinationVC = transitionContext.viewController(forKey: .to),
             let originVC = transitionContext.viewController(forKey: .from),
-            let destinationSnapshot = destinationVC.view.snapshotView(afterScreenUpdates: true),
+            let toDelegate = toDelegate,
+            let fromDelegate = fromDelegate else {
+                return
+        }
+        
+        fromDelegate.transitioningImageView.alpha = 0
+        
+        let container = transitionContext.containerView
+        let animatingImageView = UIImageView(image: transitionImage)
+        animatingImageView.frame = fromDelegate.transitioningImageViewFrame
+        
+        guard let destinationSnapshot = destinationVC.view.snapshotView(afterScreenUpdates: true),
             let originSnapshot = originVC.view.snapshotView(afterScreenUpdates: true) else {
                 return
         }
         
         destinationVC.view.frame = originVC.view.frame
-        
-        let container = transitionContext.containerView
         
         originSnapshot.frame = originVC.view.frame
         container.addSubview(originSnapshot)
@@ -49,25 +56,17 @@ class ImageTransitioner2: NSObject, UIViewControllerAnimatedTransitioning {
         container.addSubview(destinationSnapshot)
         destinationSnapshot.alpha = 0
         
-        let animatingImageView = UIImageView(image: transitionImage)
-        animatingImageView.frame = fromDelegate?.transitioningImageViewFrame ?? CGRect.zero
-        animatingImageView.contentMode = toDelegate?.transitioningImageView.contentMode ?? .scaleAspectFit
         container.addSubview(animatingImageView)
         
-        UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 0.85, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: { [weak self] in
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
             
-            guard let strongSelf = self,
-                let toDelegate = strongSelf.toDelegate else {
-                    return
-            }
-
             animatingImageView.frame = toDelegate.transitioningImageViewFrame
             animatingImageView.contentMode = toDelegate.transitioningImageView.contentMode
             animatingImageView.clipsToBounds = toDelegate.transitioningImageView.clipsToBounds
             
             destinationSnapshot.alpha = 1
             
-           toDelegate.transitioningImageView.alpha = 1
+            toDelegate.transitioningImageView.alpha = 1
             
         }) { [weak self] (completed) in
             
