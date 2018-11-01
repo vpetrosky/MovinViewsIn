@@ -12,8 +12,8 @@
 		48A113AF2152FA4E008CF327 /* TransitionManager.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A113AD2152FA44008CF327 /* TransitionManager.swift */; };
 		48A3AB8F21692EA800749FC7 /* ImageTransitioner2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A3AB8E21692EA800749FC7 /* ImageTransitioner2.swift */; };
 		48A3AB902169340300749FC7 /* ImageTransitioner2.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A3AB8E21692EA800749FC7 /* ImageTransitioner2.swift */; };
-		48A732BB213F3CD700D37F24 /* ImageTransitioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A732BA213F3CD700D37F24 /* ImageTransitioner.swift */; };
-		48A732BD213F418100D37F24 /* ImageTransitioner.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A732BA213F3CD700D37F24 /* ImageTransitioner.swift */; };
+		48A732BB213F3CD700D37F24 /* ImageTransitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A732BA213F3CD700D37F24 /* ImageTransitionable.swift */; };
+		48A732BD213F418100D37F24 /* ImageTransitionable.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A732BA213F3CD700D37F24 /* ImageTransitionable.swift */; };
 		4F4E3DEADC168C4E1E59826110D4835F /* MovinViewsIn-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 6DC2AD9257C60122FBC1876EDDED4DC7 /* MovinViewsIn-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7585122A15AF8D68592616958D69D114 /* Pods-MovinViewsIn_Tests-umbrella.h in Headers */ = {isa = PBXBuildFile; fileRef = 752F4503B488FDE82A7C608D150289DB /* Pods-MovinViewsIn_Tests-umbrella.h */; settings = {ATTRIBUTES = (Public, ); }; };
 		7B26E896A222A40C5E6B33ECCDC0640B /* Foundation.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */; };
@@ -55,7 +55,7 @@
 		4382B317237AA5273DF4D2B0AFAA417F /* Pods-MovinViewsIn_Example-frameworks.sh */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.script.sh; path = "Pods-MovinViewsIn_Example-frameworks.sh"; sourceTree = "<group>"; };
 		48A113AD2152FA44008CF327 /* TransitionManager.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TransitionManager.swift; sourceTree = "<group>"; };
 		48A3AB8E21692EA800749FC7 /* ImageTransitioner2.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTransitioner2.swift; sourceTree = "<group>"; };
-		48A732BA213F3CD700D37F24 /* ImageTransitioner.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTransitioner.swift; sourceTree = "<group>"; };
+		48A732BA213F3CD700D37F24 /* ImageTransitionable.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ImageTransitionable.swift; sourceTree = "<group>"; };
 		505B516822D23F80DA3157EB94D95CCF /* MovinViewsIn.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = MovinViewsIn.modulemap; sourceTree = "<group>"; };
 		5A16F4CFC63FAC439D7A04994F579A03 /* Foundation.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Foundation.framework; path = Platforms/iPhoneOS.platform/Developer/SDKs/iPhoneOS11.3.sdk/System/Library/Frameworks/Foundation.framework; sourceTree = DEVELOPER_DIR; };
 		5DD9B66F4E96089ACF7792C948C2D964 /* Pods-MovinViewsIn_Tests.modulemap */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = sourcecode.module; path = "Pods-MovinViewsIn_Tests.modulemap"; sourceTree = "<group>"; };
@@ -197,7 +197,7 @@
 			isa = PBXGroup;
 			children = (
 				48A113AD2152FA44008CF327 /* TransitionManager.swift */,
-				48A732BA213F3CD700D37F24 /* ImageTransitioner.swift */,
+				48A732BA213F3CD700D37F24 /* ImageTransitionable.swift */,
 				48A3AB8E21692EA800749FC7 /* ImageTransitioner2.swift */,
 				1163CE7AA4325192A4EA1C6F86F5446E /* Pod */,
 				F41191CF6B0E906108890626F278E299 /* Support Files */,
@@ -360,7 +360,7 @@
 				48A113AE2152FA44008CF327 /* TransitionManager.swift in Sources */,
 				DE403A8826A8900836213FD683A96274 /* MovinViewsIn-dummy.m in Sources */,
 				48A3AB8F21692EA800749FC7 /* ImageTransitioner2.swift in Sources */,
-				48A732BB213F3CD700D37F24 /* ImageTransitioner.swift in Sources */,
+				48A732BB213F3CD700D37F24 /* ImageTransitionable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -379,7 +379,7 @@
 				48A113AF2152FA4E008CF327 /* TransitionManager.swift in Sources */,
 				B78818915AA88D01C7883DD123C9B828 /* Pods-MovinViewsIn_Example-dummy.m in Sources */,
 				48A3AB902169340300749FC7 /* ImageTransitioner2.swift in Sources */,
-				48A732BD213F418100D37F24 /* ImageTransitioner.swift in Sources */,
+				48A732BD213F418100D37F24 /* ImageTransitionable.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
