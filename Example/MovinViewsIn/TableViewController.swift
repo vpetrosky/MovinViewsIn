@@ -16,6 +16,7 @@ class TableViewController: UITableViewController {
     
     private var selectedImageView: UIImageView?
     private var selectedCell: UITableViewCell?
+    private var selectedPuppyFrame: CGRect?
 
     private var transitionManager: TransitionManager?
     
@@ -63,6 +64,11 @@ class TableViewController: UITableViewController {
         
         selectedImageView = imageView
         selectedCell = cell
+        
+        let cellRect = tableView.rectForRow(at: indexPath)
+        let yOffset = tableView.contentOffset.y
+        selectedPuppyFrame = CGRect(x: cellRect.origin.x, y: cellRect.origin.y - yOffset, width: cellRect.width, height: cellRect.height)
+        
         performSegue(withIdentifier: TableViewController.PuppySegue, sender: nil)
     }
 }
@@ -73,13 +79,8 @@ extension TableViewController: ImageTransitionable {
     }
     
     var transitioningImageViewFrame: CGRect {
-        guard let cell = selectedCell as? PuppyCell,
-            let indexPath = tableView.indexPath(for: cell) else { return CGRect.zero }
-        
-        let cellRect = tableView.rectForRow(at: indexPath)
-        let yOffset = tableView.contentOffset.y
-        let rect = CGRect(x: cellRect.origin.x, y: cellRect.origin.y - yOffset, width: cellRect.width, height: cellRect.height)
-        return rect
+        guard let selectedPuppyFrame = selectedPuppyFrame else { return CGRect.zero }
+        return selectedPuppyFrame
     }
 }
 

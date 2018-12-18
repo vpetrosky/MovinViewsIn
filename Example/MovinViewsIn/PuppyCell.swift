@@ -16,5 +16,6 @@ class PuppyCell: UITableViewCell {
     
     func configureCell(withPuppyImage image: UIImage) {
         puppyImageView.image = image
+        puppyImageView.clipsToBounds = true
     }
 }
