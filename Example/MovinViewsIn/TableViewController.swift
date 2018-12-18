@@ -73,10 +73,13 @@ extension TableViewController: ImageTransitionable {
     }
     
     var transitioningImageViewFrame: CGRect {
-        guard let cell = selectedCell as? PuppyCell else { return CGRect.zero }
-//        let frame = view.convert(cell.puppyImageView.frame, from: tableView)
-//        return frame
-        return cell.frame
+        guard let cell = selectedCell as? PuppyCell,
+            let indexPath = tableView.indexPath(for: cell) else { return CGRect.zero }
+        
+        let cellRect = tableView.rectForRow(at: indexPath)
+        let yOffset = tableView.contentOffset.y
+        let rect = CGRect(x: cellRect.origin.x, y: cellRect.origin.y - yOffset, width: cellRect.width, height: cellRect.height)
+        return rect
     }
 }
 
