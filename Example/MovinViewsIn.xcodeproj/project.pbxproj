@@ -8,8 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		429E6BC70AA62AFF36E0D44A /* Pods_MovinViewsIn_Tests.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = EC34B397DBD4CCE7D461AC46 /* Pods_MovinViewsIn_Tests.framework */; };
+		486E711F219DD9E100FC03CD /* PuppyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = 486E711E219DD9E100FC03CD /* PuppyCell.swift */; };
 		48A3AB92216A76A000749FC7 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A3AB91216A76A000749FC7 /* SecondViewController.swift */; };
 		48A732E02140A6F500D37F24 /* ModalViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48A732DF2140A6F500D37F24 /* ModalViewController.swift */; };
+		48DDB888219D18E700D1A1F4 /* TableViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 48DDB887219D18E700D1A1F4 /* TableViewController.swift */; };
 		607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD51AFB9204008FA782 /* AppDelegate.swift */; };
 		607FACD81AFB9204008FA782 /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 607FACD71AFB9204008FA782 /* ViewController.swift */; };
 		607FACDB1AFB9204008FA782 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = 607FACD91AFB9204008FA782 /* Main.storyboard */; };
@@ -32,8 +34,10 @@
 /* Begin PBXFileReference section */
 		1757E6ADBE9A92D5E47DC219 /* Pods-MovinViewsIn_Example.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovinViewsIn_Example.release.xcconfig"; path = "Pods/Target Support Files/Pods-MovinViewsIn_Example/Pods-MovinViewsIn_Example.release.xcconfig"; sourceTree = "<group>"; };
 		1C5A1238C24BE209B2E32CD7 /* LICENSE */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text; name = LICENSE; path = ../LICENSE; sourceTree = "<group>"; };
+		486E711E219DD9E100FC03CD /* PuppyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PuppyCell.swift; sourceTree = "<group>"; };
 		48A3AB91216A76A000749FC7 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
 		48A732DF2140A6F500D37F24 /* ModalViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModalViewController.swift; sourceTree = "<group>"; };
+		48DDB887219D18E700D1A1F4 /* TableViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TableViewController.swift; sourceTree = "<group>"; };
 		4D896B5F3D206697928E6A48 /* Pods-MovinViewsIn_Tests.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-MovinViewsIn_Tests.debug.xcconfig"; path = "Pods/Target Support Files/Pods-MovinViewsIn_Tests/Pods-MovinViewsIn_Tests.debug.xcconfig"; sourceTree = "<group>"; };
 		607FACD01AFB9204008FA782 /* MovinViewsIn_Example.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = MovinViewsIn_Example.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		607FACD41AFB9204008FA782 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -112,10 +116,12 @@
 				607FACD71AFB9204008FA782 /* ViewController.swift */,
 				48A732DF2140A6F500D37F24 /* ModalViewController.swift */,
 				48A3AB91216A76A000749FC7 /* SecondViewController.swift */,
+				48DDB887219D18E700D1A1F4 /* TableViewController.swift */,
 				607FACD91AFB9204008FA782 /* Main.storyboard */,
 				607FACDC1AFB9204008FA782 /* Images.xcassets */,
 				607FACDE1AFB9204008FA782 /* LaunchScreen.xib */,
 				607FACD31AFB9204008FA782 /* Supporting Files */,
+				486E711E219DD9E100FC03CD /* PuppyCell.swift */,
 			);
 			name = "Example for MovinViewsIn";
 			path = MovinViewsIn;
@@ -218,10 +224,12 @@
 				TargetAttributes = {
 					607FACCF1AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = TPZ229J72N;
 						LastSwiftMigration = 0900;
 					};
 					607FACE41AFB9204008FA782 = {
 						CreatedOnToolsVersion = 6.3.1;
+						DevelopmentTeam = TPZ229J72N;
 						LastSwiftMigration = 0900;
 						TestTargetID = 607FACCF1AFB9204008FA782;
 					};
@@ -328,9 +336,11 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				486E711F219DD9E100FC03CD /* PuppyCell.swift in Sources */,
 				48A3AB92216A76A000749FC7 /* SecondViewController.swift in Sources */,
 				48A732E02140A6F500D37F24 /* ModalViewController.swift in Sources */,
 				607FACD81AFB9204008FA782 /* ViewController.swift in Sources */,
+				48DDB888219D18E700D1A1F4 /* TableViewController.swift in Sources */,
 				607FACD61AFB9204008FA782 /* AppDelegate.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -483,6 +493,7 @@
 			baseConfigurationReference = 7A50668B628A76406FD12294 /* Pods-MovinViewsIn_Example.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TPZ229J72N;
 				INFOPLIST_FILE = MovinViewsIn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -498,6 +509,7 @@
 			baseConfigurationReference = 1757E6ADBE9A92D5E47DC219 /* Pods-MovinViewsIn_Example.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
+				DEVELOPMENT_TEAM = TPZ229J72N;
 				INFOPLIST_FILE = MovinViewsIn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
 				MODULE_NAME = ExampleApp;
@@ -512,6 +524,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 4D896B5F3D206697928E6A48 /* Pods-MovinViewsIn_Tests.debug.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = TPZ229J72N;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
@@ -534,6 +547,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = EE3D9603259DFDD75D291374 /* Pods-MovinViewsIn_Tests.release.xcconfig */;
 			buildSettings = {
+				DEVELOPMENT_TEAM = TPZ229J72N;
 				FRAMEWORK_SEARCH_PATHS = (
 					"$(SDKROOT)/Developer/Library/Frameworks",
 					"$(inherited)",
