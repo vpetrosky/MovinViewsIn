@@ -27,6 +27,12 @@ class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
     }
     
     func animateTransition(using transitionContext: UIViewControllerContextTransitioning) {
+        DispatchQueue.main.async {
+            self.performImageTransition(withTransitionContext: transitionContext)
+        }
+    }
+    
+    func performImageTransition(withTransitionContext transitionContext: UIViewControllerContextTransitioning) {
         
         guard let transitionImage = transitionImageView.image,
             let destinationVC = transitionContext.viewController(forKey: .to),
@@ -37,13 +43,14 @@ class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
         }
         
         fromDelegate.transitioningImageView.alpha = 0
-        
+        toDelegate.transitioningImageView.alpha = 0
+
         let container = transitionContext.containerView
         let animatingImageView = UIImageView(image: transitionImage)
         animatingImageView.frame = fromDelegate.transitioningImageViewFrame
         
-        guard let destinationSnapshot = destinationVC.view.snapshotView(afterScreenUpdates: true),
-            let originSnapshot = originVC.view.snapshotView(afterScreenUpdates: true) else {
+        guard let originSnapshot = takeOriginScreenshot(),
+            let destinationSnapshot = destinationVC.view else {
                 return
         }
         
@@ -55,7 +62,7 @@ class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
         destinationSnapshot.frame = originVC.view.frame
         container.addSubview(destinationSnapshot)
         destinationSnapshot.alpha = 0
-        
+
         container.addSubview(animatingImageView)
         
         UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
@@ -66,7 +73,7 @@ class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
             
             destinationSnapshot.alpha = 1
             
-            toDelegate.transitioningImageView.alpha = 1
+            fromDelegate.transitioningImageView.alpha = 0
             
         }) { [weak self] (completed) in
             
@@ -74,6 +81,7 @@ class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
             destinationSnapshot.removeFromSuperview()
             originSnapshot.removeFromSuperview()
             
+            self?.toDelegate?.transitioningImageView.alpha = 1
             self?.toDelegate?.transitioningImageView.image = transitionImage
             
             if !transitionContext.transitionWasCancelled {
@@ -82,5 +90,17 @@ class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
             
             transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
         }
+    }
+    
+    func takeOriginScreenshot() -> UIImageView? {
+        guard let layer = UIApplication.shared.keyWindow?.layer else { return nil }
+                
+        UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, 0.0)
+        guard let context = UIGraphicsGetCurrentContext() else { return nil }
+        layer.render(in:context)
+        let screenshotImage = UIGraphicsGetImageFromCurrentImageContext()
+        UIGraphicsEndImageContext()
+        
+        return UIImageView(image: screenshotImage)
     }
 }

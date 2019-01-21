@@ -17,15 +17,16 @@ class TableViewController: UITableViewController {
     private var selectedImageView: UIImageView?
     private var selectedCell: UITableViewCell?
     private var selectedPuppyFrame: CGRect?
-
+    
     private var transitionManager: TransitionManager?
+    private var contentOffset: CGPoint?
     
     let puppies: [UIImage] = [UIImage(named: "puppy1"),
-                                 UIImage(named: "puppy2"),
-                                 UIImage(named: "puppy3"),
-                                 UIImage(named: "puppy4"),
-                                 UIImage(named: "puppy5"),
-                                 UIImage(named: "puppy6")].compactMap({$0})
+                              UIImage(named: "puppy2"),
+                              UIImage(named: "puppy3"),
+                              UIImage(named: "puppy4"),
+                              UIImage(named: "puppy5"),
+                              UIImage(named: "puppy6")].compactMap({$0})
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -33,12 +34,15 @@ class TableViewController: UITableViewController {
         tableView.rowHeight = UITableViewAutomaticDimension
         tableView.estimatedRowHeight = 180
         tableView.tableFooterView = nil
+        automaticallyAdjustsScrollViewInsets = false
+        
+        modalPresentationStyle = .custom
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if segue.identifier == TableViewController.PuppySegue,
             let modalVC = segue.destination as? ModalViewController,
-        let selectedImageView = selectedImageView {
+            let selectedImageView = selectedImageView {
             
             transitionManager = TransitionManager(originViewController: self, destinationViewController: modalVC, transitionImageView: selectedImageView)
             modalVC.transitioningDelegate = transitionManager
@@ -60,7 +64,7 @@ class TableViewController: UITableViewController {
     
     override func tableView(_ tableView: UITableView, didSelectRowAt indexPath: IndexPath) {
         guard let cell = tableView.cellForRow(at: indexPath) as? PuppyCell,
-        let imageView = cell.puppyImageView else { return }
+            let imageView = cell.puppyImageView else { return }
         
         selectedImageView = imageView
         selectedCell = cell
