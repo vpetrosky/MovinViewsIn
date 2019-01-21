@@ -1,5 +1,5 @@
 //
-//  SecondViewController.swift
+//  CollectionViewController.swift
 //  MovinViewsIn_Example
 //
 //  Created by Vanessa Petrosky on 10/7/18.
@@ -9,7 +9,7 @@
 import UIKit
 import MovinViewsIn
 
-class SecondViewController: UICollectionViewController {
+class CollectionViewController: UICollectionViewController {
     
     let thumbnails: [UIImage] = [UIImage(named: "puppy1"),
                                  UIImage(named: "puppy2"),
@@ -29,11 +29,11 @@ class SecondViewController: UICollectionViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: SecondViewController.cellIdentifier)
+        collectionView?.register(UICollectionViewCell.self, forCellWithReuseIdentifier: CollectionViewController.cellIdentifier)
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == SecondViewController.thumbnailSegue,
+        if segue.identifier == CollectionViewController.thumbnailSegue,
             let modalVC = segue.destination as? ModalViewController,
             let selectedImageView = selectedImageView {
             
@@ -48,7 +48,7 @@ class SecondViewController: UICollectionViewController {
     }
     
     override func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: SecondViewController.cellIdentifier, for: indexPath)
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: CollectionViewController.cellIdentifier, for: indexPath)
         
         let image = thumbnails[indexPath.row]
         let imageView = UIImageView(image: image)
@@ -65,11 +65,11 @@ class SecondViewController: UICollectionViewController {
         let imageView = selectedCell?.backgroundView as? UIImageView
         selectedImageView = imageView
         
-        performSegue(withIdentifier: SecondViewController.thumbnailSegue, sender: nil)
+        performSegue(withIdentifier: CollectionViewController.thumbnailSegue, sender: nil)
     }
 }
 
-extension SecondViewController: ImageTransitionable {
+extension CollectionViewController: ImageTransitionable {
     var transitioningImageView: UIImageView {
         return selectedImageView ?? UIImageView()
     }
@@ -82,7 +82,7 @@ extension SecondViewController: ImageTransitionable {
     }
 }
 
-extension SecondViewController: ModalDelegate {
+extension CollectionViewController: ModalDelegate {
     func modalViewControllerDidClose(_ modalVC: ModalViewController) {
         dismiss(animated: true, completion: nil)
     }

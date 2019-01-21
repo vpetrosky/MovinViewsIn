@@ -12,7 +12,7 @@
         <!--Puppies-->
         <scene sceneID="OrJ-qG-FOp">
             <objects>
-                <collectionViewController id="pmA-Qi-BHc" customClass="SecondViewController" customModule="MovinViewsIn_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <collectionViewController id="pmA-Qi-BHc" customClass="CollectionViewController" customModule="MovinViewsIn_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <collectionView key="view" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="scaleToFill" dataMode="prototypes" id="oPZ-bZ-lat">
                         <rect key="frame" x="0.0" y="0.0" width="414" height="736"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
@@ -41,7 +41,7 @@
                     <tabBarItem key="tabBarItem" systemItem="contacts" id="ojc-U7-TdU"/>
                     <navigationItem key="navigationItem" title="Puppies" id="4T3-HD-6pH"/>
                     <connections>
-                        <segue destination="fjU-vk-zD9" kind="presentation" identifier="Thumbnail Segue" id="9d5-Lb-06Q"/>
+                        <segue destination="fjU-vk-zD9" kind="presentation" identifier="Thumbnail Segue" id="dUF-9k-D5y"/>
                     </connections>
                 </collectionViewController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="e0X-YE-IrD" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -324,6 +324,6 @@
         <image name="surfer" width="440" height="280"/>
     </resources>
     <inferredMetricsTieBreakers>
-        <segue reference="OPq-Ls-vFL"/>
+        <segue reference="dUF-9k-D5y"/>
     </inferredMetricsTieBreakers>
 </document>
