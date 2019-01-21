@@ -1,5 +1,5 @@
 //
-//  ImageTransitioner2.swift
+//  ImageTransitioner.swift
 //  MovinViewsIn
 //
 //  Created by Vanessa Petrosky on 10/6/18.
@@ -14,11 +14,15 @@ class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
     
     private let isPresenting: Bool
     private let transitionImageView: UIImageView
+    private let transitionImage: UIImage
+    private let animatingImageView: UIImageView
     
     init(isPresenting: Bool, transitionImageView: UIImageView) {
         self.isPresenting = isPresenting
         self.transitionImageView = transitionImageView
-        
+        self.transitionImage = transitionImageView.image ?? UIImage()
+        self.animatingImageView = UIImageView(image: transitionImage)
+
         super.init()
     }
     
@@ -31,11 +35,14 @@ class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
             self.performImageTransition(withTransitionContext: transitionContext)
         }
     }
+}
+
+// MARK: - Private
+
+private extension ImageTransitioner {
     
     func performImageTransition(withTransitionContext transitionContext: UIViewControllerContextTransitioning) {
-        
-        guard let transitionImage = transitionImageView.image,
-            let destinationVC = transitionContext.viewController(forKey: .to),
+        guard let destinationVC = transitionContext.viewController(forKey: .to),
             let originVC = transitionContext.viewController(forKey: .from),
             let toDelegate = toDelegate,
             let fromDelegate = fromDelegate else {
@@ -44,57 +51,34 @@ class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
         
         fromDelegate.transitioningImageView.alpha = 0
         toDelegate.transitioningImageView.alpha = 0
-
-        let container = transitionContext.containerView
-        let animatingImageView = UIImageView(image: transitionImage)
-        animatingImageView.frame = fromDelegate.transitioningImageViewFrame
         
         guard let originSnapshot = takeOriginScreenshot(),
-            let destinationSnapshot = destinationVC.view else {
+            let destinationView = destinationVC.view else {
                 return
         }
         
-        destinationVC.view.frame = originVC.view.frame
+        setupAnimation(container: transitionContext.containerView, originVC: originVC, originSnapshot: originSnapshot, destinationView: destinationView)
+        
+        animateTransition(withTransitionContext: transitionContext, toDelegate: toDelegate, fromDelegate: fromDelegate, destinationView: destinationView, originSnapshot: originSnapshot)
+    }
+    
+    func setupAnimation(container: UIView, originVC: UIViewController, originSnapshot: UIImageView, destinationView: UIView) {
+        animatingImageView.frame = fromDelegate?.transitioningImageViewFrame ?? CGRect.zero
         
         originSnapshot.frame = originVC.view.frame
         container.addSubview(originSnapshot)
         
-        destinationSnapshot.frame = originVC.view.frame
-        container.addSubview(destinationSnapshot)
-        destinationSnapshot.alpha = 0
-
-        container.addSubview(animatingImageView)
+        destinationView.frame = originVC.view.frame
+        container.addSubview(destinationView)
         
-        UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: {
-            
-            animatingImageView.frame = toDelegate.transitioningImageViewFrame
-            animatingImageView.contentMode = toDelegate.transitioningImageView.contentMode
-            animatingImageView.clipsToBounds = toDelegate.transitioningImageView.clipsToBounds
-            
-            destinationSnapshot.alpha = 1
-            
-            fromDelegate.transitioningImageView.alpha = 0
-            
-        }) { [weak self] (completed) in
-            
-            animatingImageView.removeFromSuperview()
-            destinationSnapshot.removeFromSuperview()
-            originSnapshot.removeFromSuperview()
-            
-            self?.toDelegate?.transitioningImageView.alpha = 1
-            self?.toDelegate?.transitioningImageView.image = transitionImage
-            
-            if !transitionContext.transitionWasCancelled {
-                container.addSubview(destinationVC.view)
-            }
-            
-            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
-        }
+        destinationView.alpha = 0
+        
+        container.addSubview(animatingImageView)
     }
     
     func takeOriginScreenshot() -> UIImageView? {
         guard let layer = UIApplication.shared.keyWindow?.layer else { return nil }
-                
+        
         UIGraphicsBeginImageContextWithOptions(layer.frame.size, false, 0.0)
         guard let context = UIGraphicsGetCurrentContext() else { return nil }
         layer.render(in:context)
@@ -102,5 +86,34 @@ class ImageTransitioner: NSObject, UIViewControllerAnimatedTransitioning {
         UIGraphicsEndImageContext()
         
         return UIImageView(image: screenshotImage)
+    }
+    
+    func animateTransition(withTransitionContext transitionContext: UIViewControllerContextTransitioning, toDelegate: ImageTransitionable, fromDelegate: ImageTransitionable, destinationView: UIView, originSnapshot: UIImageView) {
+        
+        UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: { [weak self] in
+            
+            self?.animatingImageView.frame = toDelegate.transitioningImageViewFrame
+            self?.animatingImageView.contentMode = toDelegate.transitioningImageView.contentMode
+            self?.animatingImageView.clipsToBounds = toDelegate.transitioningImageView.clipsToBounds
+            
+            destinationView.alpha = 1
+            
+            fromDelegate.transitioningImageView.alpha = 0
+            
+        }) { [weak self] (completed) in
+            
+            self?.animatingImageView.removeFromSuperview()
+            destinationView.removeFromSuperview()
+            originSnapshot.removeFromSuperview()
+            
+            self?.toDelegate?.transitioningImageView.alpha = 1
+            self?.toDelegate?.transitioningImageView.image = self?.transitionImage
+            
+            if !transitionContext.transitionWasCancelled {
+                transitionContext.containerView.addSubview(destinationView)
+            }
+            
+            transitionContext.completeTransition(!transitionContext.transitionWasCancelled)
+        }
     }
 }
