@@ -31,7 +31,7 @@ class TableViewController: UITableViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        tableView.rowHeight = UITableViewAutomaticDimension
+        tableView.rowHeight = UITableView.automaticDimension
         tableView.estimatedRowHeight = 180
         tableView.tableFooterView = nil
         automaticallyAdjustsScrollViewInsets = false
