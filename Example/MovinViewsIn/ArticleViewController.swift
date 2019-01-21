@@ -1,5 +1,5 @@
 //
-//  ViewController.swift
+//  ArticleViewController.swift
 //  MovinViewsIn
 //
 //  Created by Vanessa Petrosky on 08/16/2018.
@@ -9,7 +9,7 @@
 import UIKit
 import MovinViewsIn
 
-class ViewController: UIViewController {
+class ArticleViewController: UIViewController {
     
     static let imageSegue: String = "Image Segue"
     
@@ -23,7 +23,7 @@ class ViewController: UIViewController {
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        if segue.identifier == ViewController.imageSegue,
+        if segue.identifier == ArticleViewController.imageSegue,
             let modalVC = segue.destination as? ModalViewController,
             let transitionImageView = surferButton.imageView {
             
@@ -36,7 +36,7 @@ class ViewController: UIViewController {
 }
 
 // MARK: Image Transitionable
-extension ViewController: ImageTransitionable {
+extension ArticleViewController: ImageTransitionable {
     var transitioningImageView: UIImageView {
         return surferButton.imageView ?? UIImageView()
     }
@@ -47,7 +47,7 @@ extension ViewController: ImageTransitionable {
 }
 
 // MARK: Modal Delegate
-extension ViewController: ModalDelegate {
+extension ArticleViewController: ModalDelegate {
     
     func modalViewControllerDidClose(_ modalVC: ModalViewController) {
         dismiss(animated: true, completion: nil)

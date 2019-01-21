@@ -78,7 +78,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                     </navigationBar>
                     <connections>
-                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="Ohx-eS-lrK"/>
+                        <segue destination="vXZ-lx-hvc" kind="relationship" relationship="rootViewController" id="owa-A5-n9w"/>
                     </connections>
                 </navigationController>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="YI0-LE-f5A" userLabel="First Responder" sceneMemberID="firstResponder"/>
@@ -168,7 +168,7 @@
         <!--Article-->
         <scene sceneID="ufC-wZ-h7g">
             <objects>
-                <viewController id="vXZ-lx-hvc" customClass="ViewController" customModule="MovinViewsIn_Example" customModuleProvider="target" sceneMemberID="viewController">
+                <viewController id="vXZ-lx-hvc" customClass="ArticleViewController" customModule="MovinViewsIn_Example" customModuleProvider="target" sceneMemberID="viewController">
                     <layoutGuides>
                         <viewControllerLayoutGuide type="top" id="jyV-Pf-zRb"/>
                         <viewControllerLayoutGuide type="bottom" id="2fi-mo-0CV"/>
@@ -184,7 +184,7 @@
                                 </constraints>
                                 <state key="normal" image="surfer"/>
                                 <connections>
-                                    <segue destination="aT6-AA-Ud3" kind="presentation" identifier="Image Segue" id="Ftq-cC-dIq"/>
+                                    <segue destination="aT6-AA-Ud3" kind="presentation" identifier="Image Segue" id="eSt-9X-LRa"/>
                                 </connections>
                             </button>
                             <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="bFf-mi-pc3">
