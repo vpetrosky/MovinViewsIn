@@ -75,7 +75,6 @@ extension CollectionViewController: ImageTransitionable {
     }
     
     var transitioningImageViewFrame: CGRect {
-        
         guard let selectedCell = selectedCell else { return CGRect.zero }
         let frame = view.convert(selectedCell.frame, from: collectionView)
         return frame

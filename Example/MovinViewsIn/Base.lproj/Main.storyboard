@@ -245,11 +245,8 @@
                                 </constraints>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="MYG-DF-rNX">
-                                <rect key="frame" x="10" y="20" width="50" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="C11-1t-h3N"/>
-                                    <constraint firstAttribute="width" constant="50" id="L0R-X5-qAh"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="20" width="79" height="50"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="12" maxX="20" maxY="20"/>
                                 <state key="normal" title="Close"/>
                                 <connections>
                                     <action selector="close:" destination="aT6-AA-Ud3" eventType="touchDragInside" id="tRK-tY-cmR"/>
@@ -259,8 +256,9 @@
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="trailing" secondItem="aby-wj-9L9" secondAttribute="trailing" id="E5Z-Lq-T26"/>
+                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="MYG-DF-rNX" secondAttribute="trailing" constant="335" id="GNR-TF-5JB"/>
                             <constraint firstItem="aby-wj-9L9" firstAttribute="leading" secondItem="4hI-OU-FEd" secondAttribute="leading" id="UjU-q5-Gqv"/>
-                            <constraint firstItem="MYG-DF-rNX" firstAttribute="leading" secondItem="4hI-OU-FEd" secondAttribute="leading" constant="10" id="gmu-nO-bff"/>
+                            <constraint firstItem="MYG-DF-rNX" firstAttribute="leading" secondItem="4hI-OU-FEd" secondAttribute="leading" id="gmu-nO-bff"/>
                             <constraint firstItem="MYG-DF-rNX" firstAttribute="top" secondItem="suW-dv-TGz" secondAttribute="bottom" id="yRA-gy-hCW"/>
                             <constraint firstItem="aby-wj-9L9" firstAttribute="top" secondItem="suW-dv-TGz" secondAttribute="bottom" constant="40" id="ziG-1w-1zY"/>
                         </constraints>
@@ -289,11 +287,8 @@
                                 <rect key="frame" x="0.0" y="200" width="414" height="336"/>
                             </imageView>
                             <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="7Jm-wx-8E9">
-                                <rect key="frame" x="10" y="20" width="60" height="44"/>
-                                <constraints>
-                                    <constraint firstAttribute="height" constant="44" id="9d3-Mb-xUM"/>
-                                    <constraint firstAttribute="width" constant="60" id="oU1-Kj-q9y"/>
-                                </constraints>
+                                <rect key="frame" x="0.0" y="20" width="79" height="50"/>
+                                <inset key="contentEdgeInsets" minX="20" minY="12" maxX="20" maxY="20"/>
                                 <state key="normal" title="Close"/>
                                 <connections>
                                     <action selector="close:" destination="fjU-vk-zD9" eventType="touchUpInside" id="FBX-hX-NJU"/>
@@ -302,13 +297,14 @@
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstAttribute="trailing" relation="lessThanOrEqual" secondItem="7Jm-wx-8E9" secondAttribute="trailing" constant="335" id="2UF-7o-QeP"/>
                             <constraint firstItem="A41-cx-TsJ" firstAttribute="centerY" secondItem="DPa-QI-6lI" secondAttribute="centerY" id="5Xl-m9-sQQ"/>
                             <constraint firstItem="A41-cx-TsJ" firstAttribute="top" secondItem="DPa-QI-6lI" secondAttribute="top" constant="200" id="D5x-5f-Hyh"/>
                             <constraint firstItem="A41-cx-TsJ" firstAttribute="leading" secondItem="DPa-QI-6lI" secondAttribute="leading" id="dJ6-ia-pxM"/>
                             <constraint firstAttribute="bottom" secondItem="A41-cx-TsJ" secondAttribute="bottom" constant="200" id="hLU-K9-4iU"/>
                             <constraint firstAttribute="trailing" secondItem="A41-cx-TsJ" secondAttribute="trailing" id="iQt-0E-Etw"/>
                             <constraint firstItem="7Jm-wx-8E9" firstAttribute="top" secondItem="ou9-sC-I3c" secondAttribute="bottom" id="oQ0-0c-Ym0"/>
-                            <constraint firstItem="7Jm-wx-8E9" firstAttribute="leading" secondItem="DPa-QI-6lI" secondAttribute="leading" constant="10" id="uZ0-Sw-zgX"/>
+                            <constraint firstItem="7Jm-wx-8E9" firstAttribute="leading" secondItem="DPa-QI-6lI" secondAttribute="leading" id="uZ0-Sw-zgX"/>
                         </constraints>
                     </view>
                     <connections>

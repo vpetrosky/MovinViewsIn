@@ -53,4 +53,3 @@ extension ArticleViewController: ModalDelegate {
         dismiss(animated: true, completion: nil)
     }
 }
-

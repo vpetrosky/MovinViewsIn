@@ -69,6 +69,8 @@ class TableViewController: UITableViewController {
         selectedImageView = imageView
         selectedCell = cell
         
+        /* In order to get the correct frame for the selected imageView, subtract the tableView's yOffset
+         from the y-coordinate of the origin of the cell's frame */
         let cellRect = tableView.rectForRow(at: indexPath)
         let yOffset = tableView.contentOffset.y
         selectedPuppyFrame = CGRect(x: cellRect.origin.x, y: cellRect.origin.y - yOffset, width: cellRect.width, height: cellRect.height)
