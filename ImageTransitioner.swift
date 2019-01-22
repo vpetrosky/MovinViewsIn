@@ -90,6 +90,10 @@ private extension ImageTransitioner {
     
     func animateTransition(withTransitionContext transitionContext: UIViewControllerContextTransitioning, toDelegate: ImageTransitionable, fromDelegate: ImageTransitionable, destinationView: UIView, originSnapshot: UIImageView) {
         
+        if isPresenting {
+            destinationView.layoutIfNeeded()
+        }
+        
         UIView.animate(withDuration: transitionDuration(using: transitionContext), delay: 0, usingSpringWithDamping: 1, initialSpringVelocity: 0.8, options: .curveEaseInOut, animations: { [weak self] in
             
             self?.animatingImageView.frame = toDelegate.transitioningImageViewFrame
