@@ -1,42 +1,41 @@
-#
-# Be sure to run `pod lib lint MovinViewsIn.podspec' to ensure this is a
-# valid spec before submitting.
-#
-# Any lines starting with a # are optional, but their use is encouraged
-# To learn more about a Podspec see https://guides.cocoapods.org/syntax/podspec.html
-#
 
 Pod::Spec.new do |s|
-  s.name             = 'MovinViewsIn'
-  s.version          = '0.1.0'
-  s.summary          = 'A short description of MovinViewsIn.'
 
-# This description is used to generate tags and improve search results.
-#   * Think: What does it do? Why did you write it? What is the focus?
-#   * Try to keep it short, snappy and to the point.
-#   * Write the description between the DESC delimiters below.
-#   * Finally, don't worry about the indent, CocoaPods strips it!
+ 
+  s.name         = "MovinViewsIn"
+  s.version      = "1.0.0"
+  s.summary      = "MovinViewsIn is an animation library that adds seamless transitions to your iOS app, giving your product a polished feel."
 
-  s.description      = <<-DESC
-TODO: Add long description of the pod here.
-                       DESC
 
-  s.homepage         = 'https://github.com/Vanessa Petrosky/MovinViewsIn'
-  # s.screenshots     = 'www.example.com/screenshots_1', 'www.example.com/screenshots_2'
-  s.license          = { :type => 'MIT', :file => 'LICENSE' }
-  s.author           = { 'Vanessa Petrosky' => 'vpetrosky@dragonarmy.com' }
-  s.source           = { :git => 'https://github.com/Vanessa Petrosky/MovinViewsIn.git', :tag => s.version.to_s }
-  # s.social_media_url = 'https://twitter.com/<TWITTER_USERNAME>'
+  s.description  = <<-DESC
+  "Apple gives us many out of the box options for transitioning from one viewController to the next. We can push on, present modally, show popovers and more. But what if you want to add an extra layer of polish to your transitions? MovinViewsIn provides custom animated transitions between your views when you don't have time to write all that custom code. Want a transition like the one you see in Apple's Photos app? Check out our first available transition by conforming to the ImageTransitionable protocol."
+                   DESC
 
-  s.ios.deployment_target = '8.0'
+  s.homepage     = "https://github.com/vpetrosky/MovinViewsIn"
 
-  s.source_files = 'MovinViewsIn/Classes/**/*'
+
+  s.license      = { :type => "MIT", :file => "LICENSE" }
+
+
+  s.author             = { "Vanessa Petrosky" => "vanessa.petrosky@gmail.com" }
+
+
+  s.platform     = :ios, "12.0"
+
+
+  s.source       = { :git => "https://github.com/vpetrosky/MovinViewsIn.git", :tag => "#{s.version}" }
+
   
-  # s.resource_bundles = {
-  #   'MovinViewsIn' => ['MovinViewsIn/Assets/*.png']
-  # }
+  s.source_files = "MovinViewsIn/**/*.{swift}"
 
-  # s.public_header_files = 'Pod/Classes/**/*.h'
-  # s.frameworks = 'UIKit', 'MapKit'
-  # s.dependency 'AFNetworking', '~> 2.3'
+ 
+  s.resources = "MovinViewsIn/**/*.{png,jpeg,jpg,storyboard,xib,xcassets}"
+
+
+  s.framework = "UIKit"
+
+
+  s.requires_arc = true
+  s.swift_version = "4.2"
+
 end
